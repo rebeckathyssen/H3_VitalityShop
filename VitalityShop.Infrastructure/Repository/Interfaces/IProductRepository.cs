@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using VitalityShop.Domain.Models;
 
 namespace VitalityShop.Infrastructure.Repository.Interfaces
 {
     public interface IProductRepository
     {
-        IEnumerable<Product> GetAllProducts();
+        Task <IEnumerable<Product>> GetAllProducts();
 
-        Product GetProduct(int id);
+        Task<Product> GetProduct(int id);
 
-        Product CreateProduct(Product product);
+        Task<Product> CreateProduct(Product product);
 
-        Product UpdateProduct(Product product);
+        Task<Product> UpdateProduct(Product product);
 
-        bool DeleteProduct(int id);
+        Task<bool> DeleteProduct(int id);
     }
 }

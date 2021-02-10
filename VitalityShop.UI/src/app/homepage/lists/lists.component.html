@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="tab">
+    <button
+      class="tablinks"
+      (click)="openCity($event, 'News')"
+      id="defaultOpen"
+    >
+      Nyheder
+    </button>
+    <button class="tablinks" (click)="openCity($event, 'Offer')">Tilbud</button>
+    <button class="tablinks" (click)="openCity($event, 'Popular')">
+      Populært
+    </button>
+    <button class="tablinks" id="fakeclass"></button>
+  </div>
+
+  <!-- Tab content -->
+  <div id="News" class="tabcontent">
+    <div class="flex-container">
+      <div class="products" *ngFor="let product of products">
+        <!-- Show only if the product is in stock -->
+        <!--<div *ngIf="product.stock.productQuantity >= 1">-->
+        <img src="{{ product.imgSrc }}" />
+        <div class="productTitle">{{ product?.name }}</div>
+
+        <div class="price">{{ product?.price }}</div>
+        <!--{{ product?.stock?.productQuantity }}-->
+        <!-- </div>-->
+      </div>
+    </div>
+  </div>
+
+  <div id="Offer" class="tabcontent">
+    <p>Sygt stærke tilbud her</p>
+  </div>
+
+  <div id="Popular" class="tabcontent">
+    <p>Mega populære varer her</p>
+  </div>
+</div>

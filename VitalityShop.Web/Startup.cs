@@ -50,6 +50,8 @@ namespace VitalityShop.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                // Added this to prevent blocking from CORS-policy error in frontend
+                app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             }
 
             // Swagger is a middleware, meaning that it should be configured in this configure-method

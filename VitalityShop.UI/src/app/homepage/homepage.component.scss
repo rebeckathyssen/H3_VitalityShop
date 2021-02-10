@@ -1,0 +1,73 @@
+nav {
+  background-color: #feb314;
+  box-shadow: 10px 10px 8px -6px rgba(227, 227, 227, 1);
+}
+
+.nav-link {
+  padding: 0;
+  color: #242038 !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.picture {
+  background-color: #fbfbfd;
+  text-align: center;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+}
+
+#phonetext {
+  position: absolute;
+  top: 230px;
+  left: 170px;
+  text-align: left;
+  //line-height: 70px;
+}
+
+#header {
+  font-size: 5vw;
+}
+
+#subheader {
+  margin-top: -20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+#phones {
+  width: 80%;
+}
+
+.btn:hover {
+  box-shadow: 10px 10px 8px -6px rgba(227, 227, 227, 1);
+  color: white;
+}
+
+.btn {
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 1024px) {
+  #phonetext {
+    top: 175px;
+    left: 115px;
+  }
+
+  #subheader {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #phonetext {
+    left: 70px;
+  }
+  #subheader {
+    font-size: 12px;
+    margin-top: -10px;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+}

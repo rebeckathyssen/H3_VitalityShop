@@ -20,24 +20,69 @@ namespace VitalityShop.Web.Controllers
         }
 
         // Endpoint to get all products
+        // We want to use IActionResult over ActionResult because we can make our own responses with the interface itself, like the
+            // custommade "Ok" below - whereas ActionResult only has a few different responses to pick from
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public virtual async Task<IActionResult> GetAllProducts()
         {
-            return productService.GetAllProducts();
+            var res = await productService.GetAllProducts();
+            return res != null ? (IActionResult)Ok(res) : BadRequest();
         }
 
         // Endpoint to get 1 product based on id
         [HttpGet("{id}")]
-        public Product GetProduct(int id)
+        public virtual async Task<IActionResult> GetProduct(int id)
         {
-            return productService.GetProduct(id);
+            try
+            {
+                return Ok(await productService.GetProduct(id));
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+            }
         }
 
-        // Endpoint to create a new produkt
+        // Endpoint to create a new product
         [HttpPost]
-        public Product CreateProduct(Product product)
+        public virtual async Task<IActionResult> CreateProduct(Product product)
         {
-            return productService.CreateProduct(product);
+            try
+            {
+                return Ok(await productService.CreateProduct(product));
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+            }
+        }
+
+        // Endpoint to update product
+        [HttpPut]
+        public virtual async Task<IActionResult> Put(Product product)
+        {
+            try
+            {
+                return Ok(await productService.UpdateProduct(product));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+            }
+        }
+
+        // Endpoint to delete product
+        [HttpDelete("{id}")]
+        public virtual async Task<IActionResult> DeleteProduct(int id)
+        {
+            try
+            {
+                return Ok(await productService.DeleteProduct(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+            }
         }
 
     }

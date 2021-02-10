@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #ffffff;
+  color: #242038 !important;
+  font-family: "Roboto", sans-serif;
+}
+
+.btn:active,
+.btn:focus {
+  box-shadow: none !important;
+}
+
+.btn:hover {
+  box-shadow: 10px 10px 8px -6px rgba(227, 227, 227, 1);
+  background-color: #e0a800;
+  border-color: #e0a800;
+  i {
+    color: white;
+  }
+}
+
+.btn:active {
+  box-shadow: none !important;
+  background-color: #e0a800 !important;
+  border-color: #e0a800 !important;
+  i {
+    color: white;
+  }
+}

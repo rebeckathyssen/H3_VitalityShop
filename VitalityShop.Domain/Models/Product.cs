@@ -8,8 +8,8 @@ namespace VitalityShop.Domain.Models
     {
         public int ProductId { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
         public decimal Price { get; set; } // the price for the product right now
+        public string ImgSrc { get; set; }
         // FK for ProductCategory
         public int ProductCategoryId { get; set; }
         public ProductCategory ProductCategory { get; set; }

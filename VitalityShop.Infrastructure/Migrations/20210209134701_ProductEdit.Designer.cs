@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VitalityShop.Infrastructure;
 
 namespace VitalityShop.Infrastructure.Migrations
 {
     [DbContext(typeof(VitalityDbContext))]
-    partial class VitalityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210209134701_ProductEdit")]
+    partial class ProductEdit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
