@@ -18,7 +18,9 @@ using VitalityShop.Application.Interfaces;
 using VitalityShop.Application;
 using AutoMapper;
 using Microsoft.OpenApi.Models;
-
+using VitalityShop.Infrastructure.Repository.Helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace VitalityShop.Web
 {
@@ -42,6 +44,57 @@ namespace VitalityShop.Web
 
             //Implementing Swagger which helps us expose objects as JSON endpoints
             SwaggerServiceConfig(services);
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); // LOGIN
+
+
+            // configure strongly typed settings objects -- LOGIN
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            // configure jwt authentication -- LOGIN
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.Events = new JwtBearerEvents
+                {
+                    OnTokenValidated = context =>
+                    {
+                        var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                        //var userId = Guid.Parse(context.Principal.Identity.Name);
+                        var userId = Guid.NewGuid();
+                        var user = userService.GetUser(userId);
+
+                        if (user == null)
+                        {
+                            // return unauthorized if user no longer exists
+                            context.Fail("Unauthorized");
+                        }
+                        return Task.CompletedTask;
+                    }
+                };
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+
+            // configure DI for application services -- LOGIN
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddScoped<IUserService, UserService>();
+            // LOGIN SLUT
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +113,10 @@ namespace VitalityShop.Web
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            /* It's VERY important to have Authentication before Authorization here, because the system otherwise 
+             * will leave a 401 error when trying to get a full list of users. */
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
