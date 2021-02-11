@@ -66,6 +66,11 @@ namespace VitalityShop.Infrastructure.Repository
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
+            //user.RoleId = 1;
+            //user.ZipId = new Zip() { ZipId = user.ZipId, CityName = "test", ZipCode = 5000 };
+
+            //dbContext.ZipCodes.Where(zipcode => zipcode.)
+
             dbContext.Users.Add(user);
             dbContext.SaveChanges();
 

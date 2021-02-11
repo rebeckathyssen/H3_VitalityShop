@@ -265,12 +265,19 @@ namespace VitalityShop.Infrastructure.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("CityName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");
 
                     b.HasKey("ZipId");
+
+                    b.HasIndex("CityName")
+                        .IsUnique()
+                        .HasFilter("[CityName] IS NOT NULL");
+
+                    b.HasIndex("ZipCode")
+                        .IsUnique();
 
                     b.ToTable("ZipCodes");
                 });

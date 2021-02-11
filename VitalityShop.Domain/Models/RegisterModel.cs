@@ -37,7 +37,10 @@ namespace VitalityShop.Domain.Models
         [Required]
         public int Housenumber { get; set; }
 
-        [Required]
-        public int Zipcode { get; set; }
+        public int ZipId { get; set; }
+
+        public int RoleId { get; set; }
+
+
     }
 }

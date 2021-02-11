@@ -21,6 +21,7 @@ namespace VitalityShop.Domain.Models
         public int Phone { get; set; }
         public string Street { get; set; }
         public int Housenumber { get; set; }
-        public int ZipCode { get; set; }
+        public Zip ZipId { get; set; }
+        public Role RoleId { get; set; }
     }
 }

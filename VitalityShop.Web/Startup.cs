@@ -67,8 +67,8 @@ namespace VitalityShop.Web
                     OnTokenValidated = context =>
                     {
                         var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
-                        //var userId = Guid.Parse(context.Principal.Identity.Name);
-                        var userId = Guid.NewGuid();
+                        var userId = Guid.Parse(context.Principal.Identity.Name);
+                        //var userId = Guid.NewGuid();
                         var user = userService.GetUser(userId);
 
                         if (user == null)

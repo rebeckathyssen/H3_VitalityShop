@@ -17,6 +17,8 @@ using VitalityShop.Application.Interfaces;
 namespace VitalityShop.Web.Controllers
 // Credit to Jason Watmore for creating this code! https://jasonwatmore.com/post/2019/10/14/aspnet-core-3-simple-api-for-authentication-registration-and-user-management
 {
+    // By setting this page to "Authorize" it means that all endpoints require a JWT token to access them UNLESS they have the field [AllowAnonymous]
+    // Authorize comes from the build in AspNetCore extension "Authorization"
     [Authorize]
     [ApiController]
     [Route("[controller]")]
