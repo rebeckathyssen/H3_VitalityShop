@@ -11,8 +11,8 @@ body {
 
 .btn:hover {
   box-shadow: 10px 10px 8px -6px rgba(227, 227, 227, 1);
-  background-color: #e0a800;
-  border-color: #e0a800;
+  background-color: #feb314;
+  border-color: #feb314;
   i {
     color: white;
   }
@@ -20,9 +20,15 @@ body {
 
 .btn:active {
   box-shadow: none !important;
-  background-color: #e0a800 !important;
-  border-color: #e0a800 !important;
+  background-color: #feb314 !important;
+  border-color: #feb314 !important;
   i {
     color: white;
   }
+}
+
+.form-control:focus,
+.form-control:active {
+  box-shadow: none;
+  border-color: #feb314;
 }
