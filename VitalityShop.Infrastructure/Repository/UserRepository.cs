@@ -66,11 +66,6 @@ namespace VitalityShop.Infrastructure.Repository
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
-            //user.RoleId = 1;
-            //user.ZipId = new Zip() { ZipId = user.ZipId, CityName = "test", ZipCode = 5000 };
-
-            //dbContext.ZipCodes.Where(zipcode => zipcode.)
-
             dbContext.Users.Add(user);
             dbContext.SaveChanges();
 
@@ -101,6 +96,16 @@ namespace VitalityShop.Infrastructure.Repository
 
             if (!string.IsNullOrWhiteSpace(userParam.LastName))
                 user.LastName = userParam.LastName;
+
+            user.Phone = userParam.Phone;
+
+            user.Street = userParam.Street;
+
+            user.Housenumber = userParam.Housenumber;
+
+            user.ZipId = userParam.ZipId;
+
+            user.RoleId = userParam.RoleId;
 
             // update password if provided
             if (!string.IsNullOrWhiteSpace(password))
