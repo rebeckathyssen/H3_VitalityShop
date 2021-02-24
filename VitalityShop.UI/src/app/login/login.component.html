@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Login</h2>
+  <h2>Log ind</h2>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="email">Email</label>
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="password">Password</label>
+      <label for="password">Adgangskode</label>
       <input
         type="password"
         formControlName="password"
@@ -31,10 +31,10 @@
           *ngIf="loading"
           class="spinner-border spinner-border-sm mr-1"
         ></span>
-        Login
+        Log ind
       </button>
       <a routerLink="/register" class="btn btn-warning" id="register"
-        >Register</a
+        >Registrer</a
       >
     </div>
   </form>

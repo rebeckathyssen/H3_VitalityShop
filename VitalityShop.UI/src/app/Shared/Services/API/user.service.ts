@@ -12,7 +12,7 @@ export class UserService {
 
   getAll() {
     //return this.http.get<User[]>(`${config.apiUrl}/users`);
-    return this.http.get<User[]>(this.baseUrl + this.apiClass);
+    return this.http.get<User[]>("https://localhost:44303/users/");
   }
 
   register(user: User) {
@@ -21,8 +21,16 @@ export class UserService {
     return this.http.post("https://localhost:44303/users/register", user);
   }
 
-  delete(id: number) {
+  getUser(id: string) {
+    return this.http.get<User>("https://localhost:44303/users/" + id);
+  }
+
+  updateUser(user: User, userId: string) {
+    return this.http.put<User>("https://localhost:44303/users/" + userId, user);
+  }
+
+  delete(id: string) {
     //return this.http.delete(`${config.apiUrl}/users/${id}`);
-    return this.http.delete(this.baseUrl + this.apiClass + "/${id}");
+    return this.http.delete("https://localhost:44303/users/" + id);
   }
 }

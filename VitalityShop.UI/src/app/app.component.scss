@@ -29,3 +29,11 @@ a,
 i {
   color: #242038;
 }
+
+.fas,
+.far {
+  cursor: pointer;
+  &:hover {
+    color: #feb314;
+  }
+}

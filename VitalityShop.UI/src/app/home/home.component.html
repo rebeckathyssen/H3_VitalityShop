@@ -1,9 +1,154 @@
-<h1>Hi {{ currentUser.firstName }}!</h1>
-<p>You're logged in with Angular 8!!</p>
-<h3>All registered users:</h3>
-<ul>
-  <li *ngFor="let user of users">
-    {{ user.username }} ({{ user.firstName }} {{ user.lastName }}) -
-    <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
-  </li>
-</ul>
+<div class="container">
+  <h1>Kundeinformationer</h1>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Fornavn</h5>
+      <div *ngIf="!edit">{{ currentUser?.firstName }}</div>
+      <input
+        type="text"
+        id="firstName"
+        class="form-control"
+        pattern="[^ @]*@[^ @]*"
+        [(ngModel)]="currentUser.firstName"
+        [disabled]="!edit"
+        #firstName="ngModel"
+        *ngIf="edit"
+      />
+    </div>
+    <div class="col-md-6">
+      <h5>Efternavn</h5>
+      <div *ngIf="!edit">{{ currentUser?.lastName }}</div>
+      <input
+        type="text"
+        id="lastName"
+        class="form-control"
+        pattern="[^ @]*@[^ @]*"
+        [(ngModel)]="currentUser.lastName"
+        [disabled]="!edit"
+        #lastName="ngModel"
+        *ngIf="edit"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Gade</h5>
+      <div *ngIf="!edit">{{ currentUser?.street }}</div>
+      <input
+        type="text"
+        id="street"
+        class="form-control"
+        pattern="[^ @]*@[^ @]*"
+        [(ngModel)]="currentUser.street"
+        [disabled]="!edit"
+        #street="ngModel"
+        *ngIf="edit"
+      />
+    </div>
+    <div class="col-md-6">
+      <h5>Nummer</h5>
+      <div *ngIf="!edit">{{ currentUser?.housenumber }}</div>
+      <input
+        type="text"
+        id="housenumber"
+        class="form-control"
+        pattern="[^ @]*@[^ @]*"
+        [(ngModel)]="currentUser.housenumber"
+        [disabled]="!edit"
+        #housenumber="ngModel"
+        *ngIf="edit"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Postnummer</h5>
+      <div *ngIf="!edit">{{ currentUser?.zipId }}</div>
+      <input
+        type="number"
+        id="zipId"
+        class="form-control"
+        pattern="[^ @]*@[^ @]*"
+        [(ngModel)]="currentUser.zipId"
+        [disabled]="!edit"
+        #zipId="ngModel"
+        *ngIf="edit"
+      />
+    </div>
+    <div class="col-md-6">
+      <h5>By</h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Email</h5>
+      <div *ngIf="!edit">{{ currentUser?.email }}</div>
+      <input
+        type="text"
+        id="email"
+        class="form-control"
+        pattern="[^ @]*@[^ @]*"
+        [(ngModel)]="currentUser.email"
+        [disabled]="!edit"
+        #email="ngModel"
+        *ngIf="edit"
+      />
+    </div>
+    <div class="col-md-6">
+      <h5>Telefon</h5>
+      <div *ngIf="!edit">{{ currentUser?.phone }}</div>
+      <input
+        type="number"
+        id="phone"
+        class="form-control"
+        pattern="[^ @]*@[^ @]*"
+        [(ngModel)]="currentUser.phone"
+        [disabled]="!edit"
+        #phone="ngModel"
+        *ngIf="edit"
+      />
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <br />
+  <div class="row" *ngIf="!edit">
+    <div class="col-10">
+      <button class="btn btn-warning" (click)="SetEditMode()">
+        Redigér info
+      </button>
+      <button
+        class="btn btn-danger"
+        id="delete"
+        (click)="deleteUser(currentUser.userId)"
+      >
+        Slet bruger
+      </button>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="edit">
+    <div class="col-10">
+      <button
+        class="btn btn-warning"
+        (click)="saveUser(currentUser)"
+        *ngIf="edit"
+      >
+        Gem ændringer
+      </button>
+    </div>
+  </div>
+  <br /><br />
+
+  <h3>All registered users:</h3>
+  <ul>
+    <li *ngFor="let user of users">
+      {{ user.email }} ({{ user.firstName }} {{ user.lastName }}) -
+      <a (click)="deleteUser(user.userId)" class="text-danger">Delete</a>
+    </li>
+  </ul>
+</div>

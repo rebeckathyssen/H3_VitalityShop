@@ -64,14 +64,15 @@ namespace VitalityShop.Web.Controllers
             // return basic user info and authentication token
             return Ok(new
             {
-                Id = user.UserId,
+                UserId = user.UserId,
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Phone = user.Phone,
                 Street = user.Street,
                 Housenumber = user.Housenumber,
-                Zipcode = user.UserZip,
+                ZipId = user.ZipId,
+                RoleId = user.RoleId,
                 Token = tokenString
             });
         }

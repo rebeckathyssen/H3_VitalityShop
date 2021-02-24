@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
-    <a href="/" class="navbar-brand"
+    <a [routerLink]="['/homepage']" class="navbar-brand"
       ><img src="../assets/logo duptidu done2.png" id="logo"
     /></a>
     <button
@@ -31,18 +31,18 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/login']"
-            ><i class="far fa-user"></i
+            ><i class="fas fa-user"></i
           ></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="far fa-comments"></i></a>
+          <a class="nav-link"><i class="fas fa-comments"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><i class="fas fa-shopping-basket"></i
-          ></a>
+          <a class="nav-link"><i class="fas fa-shopping-basket"></i></a>
         </li>
-        <li *ngIf="currentUser" (click)="logout()">Log ud</li>
+        <li class="nav-item" *ngIf="currentUser" (click)="logout()">
+          <a class="nav-link"> <i class="fas fa-sign-out-alt"></i></a>
+        </li>
       </ul>
     </div>
   </div>
